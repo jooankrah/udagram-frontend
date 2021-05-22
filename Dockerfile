@@ -16,16 +16,18 @@ RUN npm install
 #copy folder content
 COPY ./ ./
 
+
+#build app
+
+RUN npm run build
+
+
 #use nginx iamge
 FROM nginx:alpine
 
 #delete content of html directory
 RUN rm -rf /usr/share/nginx/html/*
 
-
-#build app
-
-RUN npm run build
 
 #copy content of www directory
 COPY ./www/ /usr/share/nginx/html/
