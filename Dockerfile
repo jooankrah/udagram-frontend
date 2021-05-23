@@ -1,5 +1,5 @@
 # Use NodeJS base image
-FROM node:13
+FROM node:13 as build
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -30,4 +30,4 @@ RUN rm -rf /usr/share/nginx/html/*
 
 
 #copy content of www directory
-COPY ./www/ /usr/share/nginx/html/
+COPY  --from=build /usr/src/app/www/ /usr/share/nginx/html/
